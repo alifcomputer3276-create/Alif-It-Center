@@ -1,1 +1,27 @@
+# ALIF IT CENTER
 
+**Digital | Innovation | Excellence**
+
+Official web presence for **ALIF IT CENTER**, located at **Gobarchapa Bazar, Badalgachhi, Naogaon**. Built as a multi-page web application (`index.html`) with bilingual (Bangla & English) support, course details, computer & online service listings, and an admission/service booking flow.
+
+## Key Features
+
+- **5-Page Navigation:** Home, Services, Courses, Admission & Booking, and About & Contact.
+- **Bilingual Support:** Instant switching between Bangla and English.
+- **Services Directory:** Computer & online services, photo studio & file optimization (including `<100KB` resizing), graphic design & printing, and web/software solutions.
+- **Courses & Syllabi:** Overview of training programs (including Office Application, Graphic Design, Database Programming, Data Analysis, and Web Design) with syllabus views.
+- **Admission & Service Booking:** Interactive booking form with instant confirmation slip details.
+- **Mobile Payment Info:** bKash, Nagad, and Rocket **Send Money** details (`01609189836`) with copy support.
+
+## Contact & Location
+
+- **Phone:** `01610-003276`
+- **Send Money (bKash / Nagad / Rocket):** `01609189836`
+- **Address:** Gobarchapa Bazar, Badalgachhi, Naogaon
+
+## Live Hosting with GitHub Pages
+
+1. Save the main website file as `index.html` in the root of the repository.
+2. Go to **Settings > Pages**.
+3. Under **Build and deployment**, select the `main` branch and `/ (root)` folder, then click **Save**.
+4. Once deployed, the site will be available at `https://<your-username>.github.io/<repository-name>/`.
