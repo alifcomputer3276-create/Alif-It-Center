@@ -1,4 +1,13 @@
 (function () {
+  const SITE_NOTICE = {
+    enabled: true, // নোটিশ সাময়িকভাবে লুকাতে চাইলে false করুন
+    bn: "নতুন ব্যাচে ভর্তি চলছে! বিস্তারিত জানতে 01610-003276 নম্বরে কল করুন।",
+    en: "Admissions are open for the new batch! Call 01610-003276 for details.",
+    btnBn: "এখনই ভর্তি হন →",
+    btnEn: "Apply Now →",
+    link: "admission.html"
+  };
+
   const SYLLABI = {
     office: {
       bn: {
@@ -98,6 +107,32 @@
 
   let currentLang = localStorage.getItem("alif_lang") || "bn";
 
+  const noticeEl = document.getElementById("siteNotice");
+  const noticeTextEl = document.getElementById("noticeText");
+  const noticeLinkBtn = document.getElementById("noticeLinkBtn");
+  const closeNoticeBtn = document.getElementById("closeNoticeBtn");
+
+  function renderNotice() {
+    if (!noticeEl || !noticeTextEl) return;
+    if (!SITE_NOTICE.enabled) {
+      noticeEl.classList.add("hidden-notice");
+      return;
+    }
+    noticeEl.classList.remove("hidden-notice");
+    noticeTextEl.textContent = currentLang === "bn" ? SITE_NOTICE.bn : SITE_NOTICE.en;
+
+    if (noticeLinkBtn) {
+      noticeLinkBtn.href = SITE_NOTICE.link;
+      noticeLinkBtn.textContent = currentLang === "bn" ? SITE_NOTICE.btnBn : SITE_NOTICE.btnEn;
+    }
+  }
+
+  if (closeNoticeBtn && noticeEl) {
+    closeNoticeBtn.addEventListener("click", () => {
+      noticeEl.classList.add("hidden-notice");
+    });
+  }
+
   function applyLanguage(lang) {
     currentLang = lang;
     localStorage.setItem("alif_lang", lang);
@@ -106,6 +141,8 @@
     document.querySelectorAll("[data-bn][data-en]").forEach((el) => {
       el.textContent = el.getAttribute(lang === "bn" ? "data-bn" : "data-en");
     });
+
+    renderNotice();
   }
 
   // Section switcher on index.html
@@ -162,7 +199,16 @@
   const modal = document.getElementById("syllabusModal");
   const modalTitle = document.getElementById("modalTitle");
   const modalList = document.getElementById("modalList");
+  const modalEnrollLink = document.getElementById("modalEnrollLink");
   const closeModalBtn = document.getElementById("closeModalBtn");
+
+  const COURSE_PARAM_MAP = {
+    office: "Basic Computer & Office Application",
+    graphic: "Graphic Design & Print Media",
+    web: "Web Design & Freelancing",
+    database: "Database Programming",
+    data: "Data Analysis"
+  };
 
   document.querySelectorAll(".syllabus-btn").forEach((btn) => {
     btn.addEventListener("click", () => {
@@ -172,6 +218,9 @@
 
       modalTitle.textContent = data.title;
       modalList.innerHTML = data.items.map((item) => `<li>${item}</li>`).join("");
+      if (modalEnrollLink && COURSE_PARAM_MAP[key]) {
+        modalEnrollLink.href = `admission.html?course=${encodeURIComponent(COURSE_PARAM_MAP[key])}`;
+      }
       modal.classList.add("open");
       modal.setAttribute("aria-hidden", "false");
     });
